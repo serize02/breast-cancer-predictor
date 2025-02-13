@@ -1,14 +1,23 @@
 stages:
   preprocess:
-    cmd: python3 preprocess_dataset.py
+    cmd: python preprocess_dataset.py
     deps:
     - preprocess_dataset.py
     - raw_dataset/data.csv
     - utils.py
     outs:
     - processed_dataset/data.csv
+  hp_tune:
+    cmd: python hp_tune.py
+    deps:
+    - hp_tune.py
+    - model.py
+    - processed_dataset/data.csv
+    - utils.py
+    outs:
+    - best_params_.json
   train:
-    cmd: python3 train.py
+    cmd: python train.py
     deps:
     - metrics_and_plots.py
     - model.py
@@ -16,14 +25,14 @@ stages:
     - train.py
     - utils.py
     metrics:
-      - metrics.json:
-          cache: false
+    - metrics.json:
+        cache: false
     plots:
-      - predictions.csv:
-          template: confusion_normalized
-          x: predicted_label
-          y: true_label
-          x_label: 'Predicted label'
-          y_label: 'True label'
-          title: Confusion matrix
-          cache: false
+    - predictions.csv:
+        template: confusion_normalized
+        x: predicted_label
+        y: true_label
+        x_label: Predicted label
+        y_label: True label
+        title: Confusion matrix
+        cache: false

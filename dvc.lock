@@ -29,16 +29,16 @@ stages:
       size: 375
     - path: model.py
       hash: md5
-      md5: 46748aa818e075ca288546fdbea9741f
-      size: 880
+      md5: b3c7306301e1bd83441b69c5267d0918
+      size: 1615
     - path: processed_dataset/data.csv
       hash: md5
       md5: d2f09d1a885f27fdbe35ec217df82dc4
       size: 338738
     - path: train.py
       hash: md5
-      md5: 444948714fcab4ece9417f0aa0f5bb12
-      size: 1067
+      md5: 7a7e274cc32fbe826638e4fd125da6e1
+      size: 772
     - path: utils.py
       hash: md5
       md5: a5e2f413dd0fb31cd9c79d7baf541a3f
@@ -46,9 +46,33 @@ stages:
     outs:
     - path: metrics.json
       hash: md5
-      md5: 618b8723be298fd8002a04c46d3111b2
-      size: 72
+      md5: 7654d91b1f73142707ddfafc5020c014
+      size: 78
     - path: predictions.csv
       hash: md5
-      md5: 0fc701cfd6162eb97b248bf2a0d3500d
+      md5: fb3ae9e36c242d13ae684c6cbb0907a8
       size: 751
+  hp_tune:
+    cmd: python hp_tune.py
+    deps:
+    - path: hp_tune.py
+      hash: md5
+      md5: 6aad431b984c3fdd7196954274202d3e
+      size: 362
+    - path: model.py
+      hash: md5
+      md5: b3c7306301e1bd83441b69c5267d0918
+      size: 1615
+    - path: processed_dataset/data.csv
+      hash: md5
+      md5: d2f09d1a885f27fdbe35ec217df82dc4
+      size: 338738
+    - path: utils.py
+      hash: md5
+      md5: a5e2f413dd0fb31cd9c79d7baf541a3f
+      size: 383
+    outs:
+    - path: best_params_.json
+      hash: md5
+      md5: a9e4f1dbe56129199ab0db223abe3118
+      size: 17
