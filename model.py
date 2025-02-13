@@ -5,7 +5,7 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.metrics import accuracy_score, f1_score, recall_score, precision_score
 
 def train_model(X_train, y_train):
-    model = GradientBoostingClassifier(random_state=42)
+    model = GradientBoostingClassifier(max_depth=10, random_state=42)
     model.fit(X_train, y_train)
     return model
 
