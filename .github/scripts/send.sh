@@ -50,4 +50,5 @@ case "$EVENT_NAME" in
   *)
     send_message "⚠️ Unknown event: $EVENT_NAME"
     ;;
+    
 esac
