@@ -11,9 +11,6 @@ def train_model(X_train, y_train):
         best_params = json.load(f)
     rfc = RandomForestClassifier(
         max_depth=best_params['max_depth'],
-        # n_estimators=best_params['n_estimators'],
-        # max_features=best_params['max_features'],
-        # min_samples_leaf=best_params['min_samples_leaf'],
         random_state=42
     )
     rfc.fit(X_train, y_train)
@@ -21,12 +18,7 @@ def train_model(X_train, y_train):
 
 def tune_model(X, y):
     rfc = RandomForestClassifier(random_state=42)
-    params = {
-        'max_depth': [2, 5, 10],
-        # 'n_estimators': [100, 200, 300, 400, 500],
-        # 'max_features': [10, 20, 30 , 40],
-        # 'min_samples_leaf': [1, 2, 4]
-    }
+    params = {'max_depth': [2, 5, 10]}
     kf = KFold(n_splits=10, shuffle=True, random_state=42)
     clf = GridSearchCV(estimator=rfc, param_grid=params, return_train_score=False, cv=kf, scoring='accuracy')
     clf.fit(X, y)

@@ -25,11 +25,9 @@ jobs:
       - name: Setup CML
         uses: iterative/setup-cml@v1
           
-      # Setup DVC GitHub Action
       - name: Setup DVC
         uses: iterative/setup-dvc@v1
-          
-      # Run DVC pipeline
+      
       - name: Run DVC pipeline
         run: dvc repro
 
@@ -47,3 +45,16 @@ jobs:
           # Add confusion matrix plot to markdown
           echo "![confusion matrix plot](./confusion_matrix.png)" >> confusion.md
           cml comment create confusion.md
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Send Telegram Notification
+        run: |
+          chmod +x .github/scripts/send.sh
+          .github/scripts/send.sh
+        env:
+          TELEGRAM_TOKEN: ${{secrets.TOKEN}}
+          CHAT_ID: ${{secrets.CHAT_ID}}
