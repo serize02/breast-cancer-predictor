@@ -7,7 +7,7 @@ on:
 permissions: write-all
 
 jobs:
-  train_and_report_eval_performance:
+  build-model:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 

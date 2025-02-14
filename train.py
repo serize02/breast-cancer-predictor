@@ -1,4 +1,5 @@
 import json
+import pickle
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -21,6 +22,7 @@ def main():
     json.dumps(metrics, indent=2)
     save_metrics(metrics)
     plot_confusion_matrix(model, X_test, y_test)
+    
 
 if __name__ == "__main__":
     main()

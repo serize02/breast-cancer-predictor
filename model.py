@@ -11,9 +11,9 @@ def train_model(X_train, y_train):
         best_params = json.load(f)
     rfc = RandomForestClassifier(
         max_depth=best_params['max_depth'],
-        n_estimators=best_params['n_estimators'],
-        max_features=best_params['max_features'],
-        min_samples_leaf=best_params['min_samples_leaf'],
+        # n_estimators=best_params['n_estimators'],
+        # max_features=best_params['max_features'],
+        # min_samples_leaf=best_params['min_samples_leaf'],
         random_state=42
     )
     rfc.fit(X_train, y_train)
@@ -23,9 +23,9 @@ def tune_model(X, y):
     rfc = RandomForestClassifier(random_state=42)
     params = {
         'max_depth': [2, 5, 10],
-        'n_estimators': [100, 200, 300, 400, 500],
-        'max_features': [10, 20, 30 , 40],
-        'min_samples_leaf': [1, 2, 4]
+        # 'n_estimators': [100, 200, 300, 400, 500],
+        # 'max_features': [10, 20, 30 , 40],
+        # 'min_samples_leaf': [1, 2, 4]
     }
     kf = KFold(n_splits=10, shuffle=True, random_state=42)
     clf = GridSearchCV(estimator=rfc, param_grid=params, return_train_score=False, cv=kf, scoring='accuracy')
@@ -35,7 +35,7 @@ def tune_model(X, y):
 
 def evaluate_model(model, X_test, y_test, float_precesion=4):
     y_pred = model.predict(X_test)
-    pd.DataFrame(y_pred).to_csv('predictions.csv')
+    pd.DataFrame(data={'predicted_label': y_pred, 'true_label': y_test}).to_csv('predictions.csv', index=False)
     accuracy = accuracy_score(y_test, y_pred)
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
