@@ -29,8 +29,8 @@ stages:
       size: 375
     - path: model.py
       hash: md5
-      md5: 1703791b8ab148500ed0c422ac5bcc02
-      size: 1861
+      md5: f8b9dd49d9c808371bf5b4ca579a9755
+      size: 1544
     - path: processed_dataset/data.csv
       hash: md5
       md5: d2f09d1a885f27fdbe35ec217df82dc4
@@ -61,8 +61,8 @@ stages:
       size: 362
     - path: model.py
       hash: md5
-      md5: 1703791b8ab148500ed0c422ac5bcc02
-      size: 1861
+      md5: f8b9dd49d9c808371bf5b4ca579a9755
+      size: 1544
     - path: processed_dataset/data.csv
       hash: md5
       md5: d2f09d1a885f27fdbe35ec217df82dc4

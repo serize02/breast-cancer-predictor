@@ -18,19 +18,6 @@ escape_markdown() {
 }
 
 case "$EVENT_NAME" in
-  push)
-    AUTHOR=$(jq -r '.pusher.name' "$EVENT_PATH")
-    BRANCH=${GITHUB_REF#refs/heads/}
-    
-    MESSAGE=$(
-      echo -e "🚀 *Push Event* in \`$(escape_markdown "$REPO")\`\n"
-      echo -e "👤 *Author:* \`$(escape_markdown "$AUTHOR")\`\n"
-      echo -e "🌿 *Branch:* \`$(escape_markdown "$BRANCH")\`\n"
-    )
-
-    send_message "$MESSAGE"
-    ;;
-
   pull_request)
     AUTHOR=$(jq -r '.pull_request.user.login' "$EVENT_PATH")
     TITLE=$(jq -r '.pull_request.title' "$EVENT_PATH")
