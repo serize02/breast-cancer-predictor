@@ -18,7 +18,14 @@ def train_model(X_train, y_train):
 
 def tune_model(X, y):
     rfc = RandomForestClassifier(random_state=42)
-    params = {'max_depth': [2, 5, 10]}
+    params = {
+        'n_estimators': [10, 50, 100, 200],
+        'max_features': ['auto', 'sqrt', 'log2'], 
+        'max_depth': [None, 10, 20, 30],
+        'min_samples_split': [2, 5, 10],
+        'min_samples_leaf': [1, 2, 4],
+        'bootstrap': [True, False]
+    }
     kf = KFold(n_splits=10, shuffle=True, random_state=42)
     clf = GridSearchCV(estimator=rfc, param_grid=params, return_train_score=False, cv=kf, scoring='accuracy')
     clf.fit(X, y)
