@@ -19,7 +19,7 @@ def train_model(X_train, y_train):
 def tune_model(X, y):
     rfc = RandomForestClassifier(random_state=42)
     params = {
-        'n_estimators': [50, 100, 200],
+        'n_estimators': [10, 50, 100, 200],
         'max_features': ['auto', 'sqrt', 'log2'], 
         'max_depth': [None, 10, 20, 30],
         'min_samples_split': [2, 5, 10],
