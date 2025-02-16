@@ -18,7 +18,6 @@ escape_markdown() {
 }
 
 case "$EVENT_NAME" in
-
   pull_request)
     AUTHOR=$(jq -r '.pull_request.user.login' "$EVENT_PATH")
     TITLE=$(jq -r '.pull_request.title' "$EVENT_PATH")
@@ -38,5 +37,4 @@ case "$EVENT_NAME" in
   *)
     send_message "⚠️ Unknown event: $EVENT_NAME"
     ;;
-    
 esac
